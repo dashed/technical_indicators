@@ -23,13 +23,14 @@ struct Renko;
 
 // ichimoku
 
-struct Ichimoku<T> {
-    chart: Box<Chart<T>>,
+struct Ichimoku<'chart, T: 'chart> {
+    chart: Box<&'chart Chart<T>>,
 }
 
-impl<T> Ichimoku<T> {
+impl<'chart, T> Ichimoku<'chart, T> {
     fn new(
-        chart: Box<Chart<T>>,
+        // TODO: needs better approach
+        chart: Box<&'chart Chart<T>>,
 
         // params
         conversion_line_period: u64,
@@ -41,22 +42,27 @@ impl<T> Ichimoku<T> {
     }
 
     fn turning_line(index: u64) -> f64 {
+        // TODO: implement
         0.0
     }
 
     fn standard_line(index: u64) -> f64 {
+        // TODO: implement
         0.0
     }
 
     fn span_a(index: u64) -> f64 {
+        // TODO: implement
         0.0
     }
 
     fn span_b(index: u64) -> f64 {
+        // TODO: implement
         0.0
     }
 
     fn lagging_line(index: u64) -> f64 {
+        // TODO: implement
         0.0
     }
 }
