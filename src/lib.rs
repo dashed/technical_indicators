@@ -41,27 +41,27 @@ impl<'chart, T> Ichimoku<'chart, T> {
         Ichimoku { chart: chart }
     }
 
-    fn turning_line(index: u64) -> f64 {
+    fn turning_line(&self, index: u64) -> T {
+        // TODO: implement
+        self.chart.get(index).open
+    }
+
+    fn standard_line(&self, index: u64) -> f64 {
         // TODO: implement
         0.0
     }
 
-    fn standard_line(index: u64) -> f64 {
+    fn span_a(&self, index: u64) -> f64 {
         // TODO: implement
         0.0
     }
 
-    fn span_a(index: u64) -> f64 {
+    fn span_b(&self, index: u64) -> f64 {
         // TODO: implement
         0.0
     }
 
-    fn span_b(index: u64) -> f64 {
-        // TODO: implement
-        0.0
-    }
-
-    fn lagging_line(index: u64) -> f64 {
+    fn lagging_line(&self, index: u64) -> f64 {
         // TODO: implement
         0.0
     }
