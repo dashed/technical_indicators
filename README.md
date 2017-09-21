@@ -34,6 +34,14 @@ Indicators
 
 *TBA.*
 
+
+Credits
+=======
+
+Thanks to [Cryptowatch API](https://cryptowat.ch/docs/api#ohlc) for the bitcoin trading data of the GDAX (Coinbase) exchange.
+
+URL used to access the trading data: `https://api.cryptowat.ch/markets/gdax/btcusd/ohlc?periods=14400` (4 hour candles)
+
 License
 =======
 
