@@ -23,7 +23,6 @@ impl Chart for CandleStick {
 
         let normalized_index = (len - 1) - index;
 
-        println!("fuck: {:?}", normalized_index);
         self.candles.get(normalized_index)
     }
 
