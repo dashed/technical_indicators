@@ -3,4 +3,6 @@ name = "technical_indicators"
 version = "0.1.0"
 authors = ["Alberto Leal <mailforalberto@gmail.com>"]
 
-[dependencies]
+[dev-dependencies]
+json = "0.11.9"
+lazy_static = "0.2"

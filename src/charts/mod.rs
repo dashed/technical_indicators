@@ -1,4 +1,5 @@
 
+#[derive(Clone)]
 pub struct DataPoint {
     pub open: f64,
     pub high: f64,
@@ -9,7 +10,8 @@ pub struct DataPoint {
 }
 
 pub trait Chart {
-    fn get(&self, index: u64) -> DataPoint;
+    fn get(&self, index: usize) -> Option<&DataPoint>;
+    fn push(&mut self, data_point: &DataPoint);
 }
 
 pub mod candlestick;

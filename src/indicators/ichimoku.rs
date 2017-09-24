@@ -22,9 +22,10 @@ impl<'chart> Ichimoku<'chart> {
         Ichimoku { chart: chart }
     }
 
-    fn turning_line(&self, index: u64) -> f64 {
+    fn turning_line(&self, index: usize) -> f64 {
         // TODO: implement
-        self.chart.get(index).open
+        // self.chart.get(index).open
+        0.0
     }
 
     fn standard_line(&self, index: u64) -> f64 {
