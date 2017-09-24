@@ -1,16 +1,16 @@
 // traits
 
-struct DataPoint<T> {
-    open: T,
-    high: T,
-    low: T,
-    close: T,
+struct DataPoint {
+    open: f64,
+    high: f64,
+    low: f64,
+    close: f64,
 
-    volume: T,
+    volume: f64,
 }
 
-trait Chart<T> {
-    fn get(&self, index: u64) -> DataPoint<T>;
+trait Chart {
+    fn get(&self, index: u64) -> DataPoint;
 }
 
 // chart styles
@@ -23,14 +23,14 @@ struct Renko;
 
 // ichimoku
 
-struct Ichimoku<'chart, T: 'chart> {
-    chart: Box<&'chart Chart<T>>,
+struct Ichimoku<'chart> {
+    chart: Box<&'chart Chart>,
 }
 
-impl<'chart, T> Ichimoku<'chart, T> {
+impl<'chart> Ichimoku<'chart> {
     fn new(
         // TODO: needs better approach
-        chart: Box<&'chart Chart<T>>,
+        chart: Box<&'chart Chart>,
 
         // params
         conversion_line_period: u64,
@@ -41,7 +41,7 @@ impl<'chart, T> Ichimoku<'chart, T> {
         Ichimoku { chart: chart }
     }
 
-    fn turning_line(&self, index: u64) -> T {
+    fn turning_line(&self, index: u64) -> f64 {
         // TODO: implement
         self.chart.get(index).open
     }
