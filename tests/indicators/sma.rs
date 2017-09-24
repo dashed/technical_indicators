@@ -33,38 +33,42 @@ fn push_get_data_points() {
     }
 
     let period = 50;
-    let sma = SimpleMovingAverage::new(Box::new(&candlestick), period);
+    let sma_open = SimpleMovingAverage::new(candlestick.open(), period);
+    let sma_high = SimpleMovingAverage::new(candlestick.high(), period);
+    let sma_low = SimpleMovingAverage::new(candlestick.low(), period);
+    let sma_close = SimpleMovingAverage::new(candlestick.close(), period);
+    let sma_volume = SimpleMovingAverage::new(candlestick.volume(), period);
 
     for index in 0..(TRADING_DATA.len() - period) {
-        match sma.open(index) {
+        match sma_open.get(index) {
             Some(result) => {
                 assert_approx_eq!(result, simple_moving_average(&Source::Open, period, index));
             }
             None => unreachable!(),
         }
 
-        match sma.high(index) {
+        match sma_high.get(index) {
             Some(result) => {
                 assert_approx_eq!(result, simple_moving_average(&Source::High, period, index));
             }
             None => unreachable!(),
         }
 
-        match sma.low(index) {
+        match sma_low.get(index) {
             Some(result) => {
                 assert_approx_eq!(result, simple_moving_average(&Source::Low, period, index));
             }
             None => unreachable!(),
         }
 
-        match sma.close(index) {
+        match sma_close.get(index) {
             Some(result) => {
                 assert_approx_eq!(result, simple_moving_average(&Source::Close, period, index));
             }
             None => unreachable!(),
         }
 
-        match sma.volume(index) {
+        match sma_volume.get(index) {
             Some(result) => {
                 assert_approx_eq!(
                     result,
@@ -75,28 +79,29 @@ fn push_get_data_points() {
         }
     }
 
-    match sma.open(TRADING_DATA.len() - period + 1) {
+    // expect non since there aren't enough data points to build a SMA of given period size
+
+    match sma_open.get(TRADING_DATA.len() - period + 1) {
         Some(_) => unreachable!(),
         None => {}
     }
 
-    match sma.high(TRADING_DATA.len() - period + 1) {
+    match sma_high.get(TRADING_DATA.len() - period + 1) {
         Some(_) => unreachable!(),
         None => {}
     }
 
-
-    match sma.low(TRADING_DATA.len() - period + 1) {
+    match sma_low.get(TRADING_DATA.len() - period + 1) {
         Some(_) => unreachable!(),
         None => {}
     }
 
-    match sma.close(TRADING_DATA.len() - period + 1) {
+    match sma_close.get(TRADING_DATA.len() - period + 1) {
         Some(_) => unreachable!(),
         None => {}
     }
 
-    match sma.volume(TRADING_DATA.len() - period + 1) {
+    match sma_volume.get(TRADING_DATA.len() - period + 1) {
         Some(_) => unreachable!(),
         None => {}
     }
