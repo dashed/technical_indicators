@@ -8,7 +8,7 @@ use TRADING_DATA;
 // tests
 
 #[test]
-fn push_data_point() {
+fn push_get_data_points() {
     let mut candlestick: CandleStick = CandleStick::new();
 
     match candlestick.get(0) {
@@ -16,12 +16,22 @@ fn push_data_point() {
         None => {}
     };
 
-    candlestick.push(&TRADING_DATA[0]);
+    for data in TRADING_DATA.iter() {
+        candlestick.push(data);
+    }
 
-    match candlestick.get(0) {
-        Some(data_point) => {
-            assert_eq!(data_point.open, TRADING_DATA[0].open);
-        }
-        None => unreachable!(),
-    };
+    for index in 0..TRADING_DATA.len() {
+        match candlestick.get(index) {
+            Some(data_point) => {
+                let arr_index = TRADING_DATA.len() - 1 - index;
+                assert_eq!(*data_point, TRADING_DATA[arr_index]);
+            }
+            None => unreachable!(),
+        };
+    }
+
+    match candlestick.get(TRADING_DATA.len()) {
+        Some(_) => unreachable!(),
+        None => {}
+    }
 }

@@ -1,5 +1,5 @@
 
-#[derive(Clone)]
+#[derive(Clone, Debug, PartialEq)]
 pub struct DataPoint {
     pub open: f64,
     pub high: f64,
