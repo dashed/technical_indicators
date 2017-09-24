@@ -13,8 +13,17 @@ See: https://en.wikipedia.org/wiki/Technical_indicator
 
 ## Install
 
+Add to your `Cargo.toml`:
+
 ```
-cargo install technical_indicators
+[dependencies]
+technical_indicators = "0.1.0"
+```
+
+Next, add this to your crate:
+
+```
+extern crate technical_indicators;
 ```
 
 ## Usage
