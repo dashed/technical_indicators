@@ -15,14 +15,14 @@ See: https://en.wikipedia.org/wiki/Technical_indicator
 
 Add to your `Cargo.toml`:
 
-```
+```toml
 [dependencies]
 technical_indicators = "0.1.0"
 ```
 
 Next, add this to your crate:
 
-```
+```rust
 extern crate technical_indicators;
 ```
 
