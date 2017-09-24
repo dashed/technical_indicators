@@ -17,7 +17,7 @@ impl<'chart> SimpleMovingAverage<'chart> {
         }
     }
 
-    pub fn get(&self, source_type: Source, index: usize) -> Option<f64> {
+    pub fn get(&self, source_type: &Source, index: usize) -> Option<f64> {
         let mut total = 0.0;
 
         for get_index in index..(index + self.period_length) {
@@ -26,7 +26,7 @@ impl<'chart> SimpleMovingAverage<'chart> {
                     return None;
                 }
                 Some(data) => {
-                    total += data.get(&source_type);
+                    total += data.get(source_type);
                 }
             }
         }
@@ -35,22 +35,22 @@ impl<'chart> SimpleMovingAverage<'chart> {
     }
 
     pub fn open(&self, index: usize) -> Option<f64> {
-        self.get(Source::Open, index)
+        self.get(&Source::Open, index)
     }
 
     pub fn high(&self, index: usize) -> Option<f64> {
-        self.get(Source::High, index)
+        self.get(&Source::High, index)
     }
 
     pub fn low(&self, index: usize) -> Option<f64> {
-        self.get(Source::Low, index)
+        self.get(&Source::Low, index)
     }
 
     pub fn close(&self, index: usize) -> Option<f64> {
-        self.get(Source::Close, index)
+        self.get(&Source::Close, index)
     }
 
     pub fn volume(&self, index: usize) -> Option<f64> {
-        self.get(Source::Volume, index)
+        self.get(&Source::Volume, index)
     }
 }

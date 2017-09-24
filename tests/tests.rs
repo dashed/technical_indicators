@@ -1,5 +1,7 @@
 // 3rd-party crates
 
+#[macro_use]
+extern crate assert_approx_eq;
 extern crate json;
 #[macro_use]
 extern crate lazy_static;
