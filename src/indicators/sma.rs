@@ -1,56 +1,33 @@
-// local imports
-
-use charts::{Chart, Source};
 
 // Simple Moving Average (SMA)
 
-pub struct SimpleMovingAverage<'chart> {
-    chart: Box<&'chart Chart>,
+pub struct SimpleMovingAverage<'source> {
+    source: &'source [f64],
     period_length: usize,
 }
 
-impl<'chart> SimpleMovingAverage<'chart> {
-    pub fn new(chart: Box<&'chart Chart>, length: usize) -> Self {
+impl<'source> SimpleMovingAverage<'source> {
+    pub fn new(source: &'source [f64], length: usize) -> Self {
         SimpleMovingAverage {
-            chart: chart,
+            source: source,
             period_length: length,
         }
     }
 
-    pub fn get(&self, source_type: &Source, index: usize) -> Option<f64> {
+    pub fn get(&self, index: usize) -> Option<f64> {
         let mut total = 0.0;
 
         for get_index in index..(index + self.period_length) {
-            match self.chart.get(get_index) {
+            match self.source.get(get_index) {
                 None => {
                     return None;
                 }
                 Some(data) => {
-                    total += data.get(source_type);
+                    total += *data;
                 }
             }
         }
 
         Some(total / (self.period_length as f64))
-    }
-
-    pub fn open(&self, index: usize) -> Option<f64> {
-        self.get(&Source::Open, index)
-    }
-
-    pub fn high(&self, index: usize) -> Option<f64> {
-        self.get(&Source::High, index)
-    }
-
-    pub fn low(&self, index: usize) -> Option<f64> {
-        self.get(&Source::Low, index)
-    }
-
-    pub fn close(&self, index: usize) -> Option<f64> {
-        self.get(&Source::Close, index)
-    }
-
-    pub fn volume(&self, index: usize) -> Option<f64> {
-        self.get(&Source::Volume, index)
     }
 }
