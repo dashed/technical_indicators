@@ -6,7 +6,7 @@ description = "Library of technical indicators in Rust."
 license = "MIT"
 documentation = "https://docs.rs/technical_indicators"
 repository = "https://github.com/dashed/technical_indicators"
-keywords = ["technical-analysis", "trading", "candles", "charts", "candlesticks", "investing"]
+keywords = ["technical-analysis", "trading", "charts", "candlestick", "investing"]
 
 
 [dev-dependencies]
