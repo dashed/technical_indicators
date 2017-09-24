@@ -30,14 +30,6 @@ extern crate technical_indicators;
 
 *TBA.*
 
-TODO
-====
-
-- [ ] ichimoku
-- [ ] EMA
-- [ ] https://www.incrediblecharts.com/indicators/chandelier_exits.php
-- [ ] lazybear indicators
-
 Indicators
 ==========
 
