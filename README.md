@@ -43,6 +43,10 @@ Indicators
 
 *TBA.*
 
+Chores
+======
+
+- `cargo fmt`: Run [`rustfmt`](https://github.com/rust-lang-nursery/rustfmt)
 
 Credits
 =======
