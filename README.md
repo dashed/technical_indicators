@@ -1,4 +1,4 @@
-technical_indicators [![Build Status](https://travis-ci.org/dashed/technical_indicators.svg)](https://travis-ci.org/dashed/technical_indicators) [![crate version](https://img.shields.io/crates/v/technical_indicators.svg?style=flat)](https://crates.io/crates/technical_indicators)
+technical_indicators [![Build Status](https://travis-ci.org/dashed/technical_indicators.svg)](https://travis-ci.org/dashed/technical_indicators) [![crate version](https://img.shields.io/crates/v/technical_indicators.svg?style=flat)](https://crates.io/crates/technical_indicators) [![docs.rs](https://docs.rs/technical_indicators/badge.svg)](https://docs.rs/technical_indicators)
 ====================
 
 > Library of technical indicators in Rust.
