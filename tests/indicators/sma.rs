@@ -6,17 +6,6 @@ use technical_indicators::charts::candlestick::CandleStick;
 
 use TRADING_DATA;
 
-fn simple_moving_average(source_type: &Source, period: usize, index: usize) -> f64 {
-    let end = TRADING_DATA.len();
-
-    let mut sum = 0.0;
-    for data in (&TRADING_DATA)[(end - period - index)..(end - index)].iter() {
-        sum += data.get(source_type);
-    }
-
-    sum / (period as f64)
-}
-
 // tests
 
 #[test]
@@ -105,4 +94,17 @@ fn push_get_data_points() {
         Some(_) => unreachable!(),
         None => {}
     }
+}
+
+// helpers
+
+fn simple_moving_average(source_type: &Source, period: usize, index: usize) -> f64 {
+    let end = TRADING_DATA.len();
+
+    let mut sum = 0.0;
+    for data in (&TRADING_DATA)[(end - period - index)..(end - index)].iter() {
+        sum += data.get(source_type);
+    }
+
+    sum / (period as f64)
 }
