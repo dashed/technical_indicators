@@ -1,4 +1,4 @@
-technical_indicators
+technical_indicators [![crate version](https://img.shields.io/crates/v/technical_indicators.svg?style=flat)](https://crates.io/crates/technical_indicators)
 ====================
 
 > Library of technical indicators in Rust.
