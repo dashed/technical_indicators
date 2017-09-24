@@ -30,11 +30,23 @@ lazy_static! {
                 arr.clone().iter_mut().map(|item| {
 
                     // NOTE: [ CloseTime, OpenPrice, HighPrice, LowPrice, ClosePrice, Volume ]
+
+                    let open = item[1].as_f64().unwrap();
+                    let high = item[2].as_f64().unwrap();
+                    let low = item[3].as_f64().unwrap();
+                    let close = item[4].as_f64().unwrap();
+
+                    assert!(low <= high);
+                    assert!(open <= high);
+                    assert!(low <= open);
+                    assert!(close <= high);
+                    assert!(low <= close);
+
                     DataPoint {
-                        open: item[1].as_f64().unwrap(),
-                        high: item[2].as_f64().unwrap(),
-                        low: item[3].as_f64().unwrap(),
-                        close: item[4].as_f64().unwrap(),
+                        open: open,
+                        high: high,
+                        low: low,
+                        close: close,
                         volume: item[5].as_f64().unwrap(),
                     }
                 }).collect()
