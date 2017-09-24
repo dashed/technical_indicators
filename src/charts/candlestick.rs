@@ -17,7 +17,7 @@ impl Chart for CandleStick {
     fn get(&self, index: usize) -> Option<&DataPoint> {
         let len = self.candles.len();
 
-        if len <= 0 || index >= len {
+        if index >= len {
             return None;
         }
 
