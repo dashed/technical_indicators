@@ -34,7 +34,6 @@ TODO
 ====
 
 - [ ] ichimoku
-- [ ] SMA
 - [ ] EMA
 - [ ] https://www.incrediblecharts.com/indicators/chandelier_exits.php
 - [ ] lazybear indicators
@@ -42,7 +41,9 @@ TODO
 Indicators
 ==========
 
-*TBA.*
+## Simple Moving Average
+
+Read more: https://en.wikipedia.org/wiki/Moving_average#Simple_moving_average
 
 Chores
 ======
