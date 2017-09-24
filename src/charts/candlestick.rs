@@ -2,6 +2,7 @@ use charts::DataPoint;
 use charts::Chart;
 
 // candlestick chart
+// Ref: https://en.wikipedia.org/wiki/Open-high-low-close_chart
 
 pub struct CandleStick {
     candles: Vec<DataPoint>,

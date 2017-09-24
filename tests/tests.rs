@@ -45,3 +45,4 @@ lazy_static! {
 // tests
 
 pub mod charts;
+pub mod indicators;
