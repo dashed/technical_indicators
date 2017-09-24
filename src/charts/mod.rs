@@ -34,9 +34,36 @@ impl DataPoint {
     }
 }
 
+pub struct SourceSeries<'chart> {
+    chart: Box<&'chart Chart>,
+    series_type: Source,
+}
+
+impl<'chart> SourceSeries<'chart> {
+    fn new(chart: Box<&'chart Chart>, series_type: Source) -> Self {
+        SourceSeries {
+            chart: chart,
+            series_type: series_type,
+        }
+    }
+
+    pub fn get(&self, index: usize) -> Option<f64> {
+        match self.chart.get(index) {
+            None => None,
+            Some(data_point) => Some(data_point.get(&self.series_type)),
+        }
+    }
+}
+
 pub trait Chart {
     fn get(&self, index: usize) -> Option<&DataPoint>;
     fn push(&mut self, data_point: &DataPoint);
+
+    fn open(&self) -> SourceSeries;
+    fn high(&self) -> SourceSeries;
+    fn low(&self) -> SourceSeries;
+    fn close(&self) -> SourceSeries;
+    fn volume(&self) -> SourceSeries;
 }
 
 pub mod candlestick;

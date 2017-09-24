@@ -1,13 +1,14 @@
+use charts::SourceSeries;
 
 // Simple Moving Average (SMA)
 
 pub struct SimpleMovingAverage<'source> {
-    source: &'source [f64],
+    source: SourceSeries<'source>,
     period_length: usize,
 }
 
 impl<'source> SimpleMovingAverage<'source> {
-    pub fn new(source: &'source [f64], length: usize) -> Self {
+    pub fn new(source: SourceSeries<'source>, length: usize) -> Self {
         SimpleMovingAverage {
             source: source,
             period_length: length,
@@ -23,7 +24,7 @@ impl<'source> SimpleMovingAverage<'source> {
                     return None;
                 }
                 Some(data) => {
-                    total += *data;
+                    total += data;
                 }
             }
         }

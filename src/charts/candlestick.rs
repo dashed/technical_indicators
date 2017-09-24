@@ -1,5 +1,4 @@
-use charts::DataPoint;
-use charts::Chart;
+use charts::{Chart, DataPoint, Source, SourceSeries};
 
 // candlestick chart
 // Ref: https://en.wikipedia.org/wiki/Open-high-low-close_chart
@@ -29,5 +28,25 @@ impl Chart for CandleStick {
 
     fn push(&mut self, data_point: &DataPoint) {
         self.candles.push(data_point.clone());
+    }
+
+    fn open(&self) -> SourceSeries {
+        SourceSeries::new(Box::new(self), Source::Open)
+    }
+
+    fn high(&self) -> SourceSeries {
+        SourceSeries::new(Box::new(self), Source::High)
+    }
+
+    fn low(&self) -> SourceSeries {
+        SourceSeries::new(Box::new(self), Source::Low)
+    }
+
+    fn close(&self) -> SourceSeries {
+        SourceSeries::new(Box::new(self), Source::Close)
+    }
+
+    fn volume(&self) -> SourceSeries {
+        SourceSeries::new(Box::new(self), Source::Volume)
     }
 }
