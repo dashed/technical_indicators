@@ -2,6 +2,12 @@
 name = "technical_indicators"
 version = "0.1.0"
 authors = ["Alberto Leal <mailforalberto@gmail.com>"]
+description = "Library of technical indicators in Rust."
+license = "MIT"
+documentation = "https://docs.rs/technical_indicators"
+repository = "https://github.com/dashed/technical_indicators"
+keywords = ["technical-analysis", "trading", "candles", "charts", "candlesticks", "investing"]
+
 
 [dev-dependencies]
 json = "0.11.9"
