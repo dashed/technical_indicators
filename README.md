@@ -47,6 +47,8 @@ Chores
 ======
 
 - `cargo fmt`: Run [`rustfmt`](https://github.com/rust-lang-nursery/rustfmt)
+- `cargo test`: Run tests.
+- `cargo check`: Quick compile check.
 
 Credits
 =======
