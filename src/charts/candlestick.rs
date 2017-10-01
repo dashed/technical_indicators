@@ -17,11 +17,16 @@ impl Chart for CandleStick {
     fn get(&self, index: usize) -> Option<&DataPoint> {
         let len = self.candles.len();
 
+        if len <= 0 {
+            return None;
+        }
+
         if index >= len {
             return None;
         }
 
-        let normalized_index = (len - 1) - index;
+        let len_index = len - 1;
+        let normalized_index = len_index - index;
 
         self.candles.get(normalized_index)
     }
