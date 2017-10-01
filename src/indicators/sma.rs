@@ -6,7 +6,6 @@ pub struct SimpleMovingAverage<'source> {
     source: SourceSeries<'source>,
 
     // params
-
     period_length: usize,
 }
 
