@@ -37,6 +37,7 @@ impl DataPoint {
 pub struct SourceSeries<'chart> {
     chart: Box<&'chart Chart>,
     series_type: Source,
+    offset: usize,
 }
 
 impl<'chart> SourceSeries<'chart> {
@@ -44,9 +45,19 @@ impl<'chart> SourceSeries<'chart> {
         SourceSeries {
             chart: chart,
             series_type: series_type,
+            offset: 0,
         }
     }
 
+    pub fn offset(&self, index: usize) -> Self {
+        SourceSeries {
+            chart: self.chart.clone(),
+            series_type: self.series_type.clone(),
+            offset: index,
+        }
+    }
+
+    /// Get the value of this `SourceSeries` at `index`.
     pub fn get(&self, index: usize) -> Option<f64> {
         match self.chart.get(index) {
             None => None,
