@@ -35,13 +35,13 @@ impl DataPoint {
 }
 
 pub struct SourceSeries<'chart> {
-    chart: Box<&'chart Chart>,
+    chart: &'chart Chart,
     series_type: Source,
     offset: usize,
 }
 
 impl<'chart> SourceSeries<'chart> {
-    fn new(chart: Box<&'chart Chart>, series_type: Source) -> Self {
+    fn new(chart: &'chart Chart, series_type: Source) -> Self {
         SourceSeries {
             chart: chart,
             series_type: series_type,
@@ -67,14 +67,35 @@ impl<'chart> SourceSeries<'chart> {
 }
 
 pub trait Chart {
+    fn as_chart(&self) -> &Chart;
+
     fn get(&self, index: usize) -> Option<&DataPoint>;
     fn push(&mut self, data_point: &DataPoint);
 
-    fn open(&self) -> SourceSeries;
-    fn high(&self) -> SourceSeries;
-    fn low(&self) -> SourceSeries;
-    fn close(&self) -> SourceSeries;
-    fn volume(&self) -> SourceSeries;
+    fn open<'chart>(&'chart self) -> SourceSeries {
+        let chart: &'chart Chart = self.as_chart();
+        SourceSeries::new(chart, Source::Open)
+    }
+
+    fn high<'chart>(&'chart self) -> SourceSeries {
+        let chart: &'chart Chart = self.as_chart();
+        SourceSeries::new(chart, Source::High)
+    }
+
+    fn low<'chart>(&'chart self) -> SourceSeries {
+        let chart: &'chart Chart = self.as_chart();
+        SourceSeries::new(chart, Source::Low)
+    }
+
+    fn close<'chart>(&'chart self) -> SourceSeries {
+        let chart: &'chart Chart = self.as_chart();
+        SourceSeries::new(chart, Source::Close)
+    }
+
+    fn volume<'chart>(&'chart self) -> SourceSeries {
+        let chart: &'chart Chart = self.as_chart();
+        SourceSeries::new(chart, Source::Volume)
+    }
 }
 
 pub mod utils;

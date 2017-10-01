@@ -7,7 +7,7 @@ use charts::utils::{highest, lowest};
 // Ichimoku Kinkō Hyō
 
 pub struct Ichimoku<'chart> {
-    chart: Box<&'chart Chart>,
+    chart: &'chart Chart,
 
     // params
     turning_line_period: usize,
@@ -18,8 +18,7 @@ pub struct Ichimoku<'chart> {
 
 impl<'chart> Ichimoku<'chart> {
     fn new(
-        // TODO: needs better approach
-        chart: Box<&'chart Chart>,
+        chart: &'chart Chart,
 
         // params
         turning_line_period: usize,

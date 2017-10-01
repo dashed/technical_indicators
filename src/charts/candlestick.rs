@@ -14,6 +14,10 @@ impl CandleStick {
 }
 
 impl Chart for CandleStick {
+    fn as_chart(&self) -> &Chart {
+        self
+    }
+
     fn get(&self, index: usize) -> Option<&DataPoint> {
         let len = self.candles.len();
 
@@ -33,25 +37,5 @@ impl Chart for CandleStick {
 
     fn push(&mut self, data_point: &DataPoint) {
         self.candles.push(data_point.clone());
-    }
-
-    fn open(&self) -> SourceSeries {
-        SourceSeries::new(Box::new(self), Source::Open)
-    }
-
-    fn high(&self) -> SourceSeries {
-        SourceSeries::new(Box::new(self), Source::High)
-    }
-
-    fn low(&self) -> SourceSeries {
-        SourceSeries::new(Box::new(self), Source::Low)
-    }
-
-    fn close(&self) -> SourceSeries {
-        SourceSeries::new(Box::new(self), Source::Close)
-    }
-
-    fn volume(&self) -> SourceSeries {
-        SourceSeries::new(Box::new(self), Source::Volume)
     }
 }
