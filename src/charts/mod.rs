@@ -77,4 +77,8 @@ pub trait Chart {
     fn volume(&self) -> SourceSeries;
 }
 
+pub mod utils;
+
+// types of charts
+
 pub mod candlestick;
