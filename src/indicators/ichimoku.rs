@@ -1,7 +1,6 @@
 // local imports
 
 use charts::Chart;
-use charts::SourceSeries;
 use charts::utils::{highest, lowest};
 
 // Ichimoku Kinkō Hyō

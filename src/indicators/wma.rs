@@ -1,6 +1,6 @@
 use charts::SourceSeries;
 
-// Exponential Moving Average (EMA)
+// Weighted Moving Average (WMA)
 
 pub struct WeightedMovingAverage<'source> {
     source: SourceSeries<'source>,
@@ -11,7 +11,6 @@ pub struct WeightedMovingAverage<'source> {
 
 impl<'source> WeightedMovingAverage<'source> {
     pub fn new(source: SourceSeries<'source>, length: usize) -> Self {
-
         WeightedMovingAverage {
             source: source,
             length: length,
