@@ -75,7 +75,11 @@ pub trait Chart {
     /// Get number of data points in this chart.
     fn len(&self) -> usize;
 
+    /// Add newest data point to the chart.
     fn push(&mut self, data_point: &DataPoint);
+
+    /// Remove oldest data point from the chart.
+    fn pop_front(&mut self);
 
     fn open<'chart>(&'chart self) -> SourceSeries {
         let chart: &'chart Chart = self.as_chart();

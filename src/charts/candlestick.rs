@@ -1,15 +1,16 @@
-use charts::{Chart, DataPoint, Source, SourceSeries};
+use charts::{Chart, DataPoint};
+use std::collections::VecDeque;
 
 // candlestick chart
 // Ref: https://en.wikipedia.org/wiki/Open-high-low-close_chart
 
 pub struct CandleStick {
-    candles: Vec<DataPoint>,
+    candles: VecDeque<DataPoint>,
 }
 
 impl CandleStick {
     pub fn new() -> Self {
-        CandleStick { candles: vec![] }
+        CandleStick { candles: VecDeque::new() }
     }
 }
 
@@ -36,7 +37,11 @@ impl Chart for CandleStick {
     }
 
     fn push(&mut self, data_point: &DataPoint) {
-        self.candles.push(data_point.clone());
+        self.candles.push_back(data_point.clone());
+    }
+
+    fn pop_front(&mut self) {
+        self.candles.pop_front();
     }
 
     fn len(&self) -> usize {
