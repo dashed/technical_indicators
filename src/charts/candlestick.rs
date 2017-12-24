@@ -10,7 +10,9 @@ pub struct CandleStick {
 
 impl CandleStick {
     pub fn new() -> Self {
-        CandleStick { candles: VecDeque::new() }
+        CandleStick {
+            candles: VecDeque::new(),
+        }
     }
 }
 

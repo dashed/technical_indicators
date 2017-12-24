@@ -34,6 +34,7 @@ impl DataPoint {
     }
 }
 
+#[derive(Clone)]
 pub struct SourceSeries<'chart> {
     chart: &'chart Chart,
     series_type: Source,
@@ -41,7 +42,7 @@ pub struct SourceSeries<'chart> {
 }
 
 impl<'chart> SourceSeries<'chart> {
-    fn new(chart: &'chart Chart, series_type: Source) -> Self {
+    pub fn new(chart: &'chart Chart, series_type: Source) -> Self {
         SourceSeries {
             chart: chart,
             series_type: series_type,
@@ -63,6 +64,10 @@ impl<'chart> SourceSeries<'chart> {
             None => None,
             Some(data_point) => Some(data_point.get(&self.series_type)),
         }
+    }
+
+    pub fn len(&self) -> usize {
+        self.chart.len()
     }
 }
 
