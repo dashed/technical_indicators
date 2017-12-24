@@ -37,6 +37,8 @@ impl<'chart> Ichimoku<'chart> {
         }
     }
 
+    /// A moving average of the highest high and lowest low over the last
+    /// `turning_line_period` data points.
     fn turning_line(&self, index: usize) -> Option<f64> {
         // aka Tenkan-sen, or conversion-line
 
@@ -54,12 +56,15 @@ impl<'chart> Ichimoku<'chart> {
             Some(highest_val) => highest_val,
         };
 
+        // get the average
 
         let result = (lowest_val + highest_val) / 2.0;
 
         Some(result)
     }
 
+    /// A moving average of the highest high and lowest low over the last
+    /// `standard_line_period` data points.
     fn standard_line(&self, index: usize) -> Option<f64> {
         // aka Kijun-sen or base-line
 
@@ -78,12 +83,14 @@ impl<'chart> Ichimoku<'chart> {
             Some(highest_val) => highest_val,
         };
 
-
         let result = (lowest_val + highest_val) / 2.0;
 
         Some(result)
     }
 
+    /// The average of the turning line (i.e Tenkan Sen) and
+    /// standard line (i.e. Kijun Sen), plotted `lagging_span_displacement`
+    /// data points ahead.
     fn span_a(&self, index: usize) -> Option<f64> {
         // Senkou Span A (Leading Span A)
 
@@ -100,6 +107,8 @@ impl<'chart> Ichimoku<'chart> {
             }
             Some(x) => x,
         };
+
+        // get the average
 
         let result = (turning_line_val + standard_line_val) / 2.0;
 
@@ -125,6 +134,7 @@ impl<'chart> Ichimoku<'chart> {
             Some(highest_val) => highest_val,
         };
 
+        // get the average
 
         let result = (lowest_val + highest_val) / 2.0;
 

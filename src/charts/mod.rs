@@ -69,7 +69,9 @@ impl<'chart> SourceSeries<'chart> {
 pub trait Chart {
     fn as_chart(&self) -> &Chart;
 
+    /// Get value of this `Chart` at `index`.
     fn get(&self, index: usize) -> Option<&DataPoint>;
+
     fn push(&mut self, data_point: &DataPoint);
 
     fn open<'chart>(&'chart self) -> SourceSeries {
