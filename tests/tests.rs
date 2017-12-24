@@ -25,6 +25,7 @@ lazy_static! {
 
         let parsed = json::parse(raw_data).unwrap();
 
+        // 14400 seconds := 4 hours
         match parsed["result"]["14400"] {
             JsonValue::Array(ref arr) => {
                 arr.clone().iter_mut().map(|item| {
