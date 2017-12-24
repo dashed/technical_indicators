@@ -1,6 +1,6 @@
 [package]
 name = "technical_indicators"
-version = "0.2.0"
+version = "0.3.0"
 authors = ["Alberto Leal <mailforalberto@gmail.com>"]
 description = "Library of technical indicators in Rust."
 license = "MIT"
