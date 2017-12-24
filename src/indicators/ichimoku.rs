@@ -91,17 +91,28 @@ impl<'chart> Ichimoku<'chart> {
     /// The average of the turning line (i.e Tenkan Sen) and
     /// standard line (i.e. Kijun Sen), plotted `lagging_span_displacement`
     /// data points ahead.
-    fn span_a(&self, index: usize) -> Option<f64> {
+    fn span_a(&self, index: i64) -> Option<f64> {
         // Senkou Span A (Leading Span A)
 
-        let turning_line_val = match self.turning_line(index) {
+        // Span A plotted at `index` relies on data that is self.lagging_span_displacement
+        // data points behind.
+
+        let normalized_index = index + (self.lagging_span_displacement as i64);
+
+        if normalized_index < 0 {
+            return None;
+        }
+
+        let normalized_index = normalized_index as usize;
+
+        let turning_line_val = match self.turning_line(normalized_index) {
             None => {
                 return None;
             }
             Some(x) => x,
         };
 
-        let standard_line_val = match self.standard_line(index) {
+        let standard_line_val = match self.standard_line(normalized_index) {
             None => {
                 return None;
             }
@@ -111,8 +122,6 @@ impl<'chart> Ichimoku<'chart> {
         // get the average
 
         let result = (turning_line_val + standard_line_val) / 2.0;
-
-        // TODO: account for lagging_span_displacement
 
         Some(result)
     }
