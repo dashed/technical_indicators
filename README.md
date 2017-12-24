@@ -17,7 +17,7 @@ Add to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-technical_indicators = "0.2.0"
+technical_indicators = "0.5.0"
 ```
 
 Next, add this to your crate:
@@ -33,9 +33,19 @@ extern crate technical_indicators;
 Indicators
 ==========
 
+Implemented indicators.
+
 ## Simple Moving Average
 
 Read more: https://en.wikipedia.org/wiki/Moving_average#Simple_moving_average
+
+## Exponential Moving Average
+
+Read more: https://en.wikipedia.org/wiki/Moving_average#Exponential_moving_average
+
+## Ichimoku Kinkō Hyō
+
+Read more: https://en.wikipedia.org/wiki/Ichimoku_Kink%C5%8D_Hy%C5%8D
 
 Chores
 ======
