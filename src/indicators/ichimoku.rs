@@ -39,6 +39,10 @@ impl<'chart> Ichimoku<'chart> {
 
     /// Return Ichimoku chart with default settings.
     fn default(chart: &'chart Chart) -> Self {
+        // reference:
+        // http://www.ichimokutrader.com/elements.html
+        // http://stockcharts.com/school/doku.php?id=chart_school:technical_indicators:ichimoku_cloud
+
         Ichimoku {
             chart: chart,
 
