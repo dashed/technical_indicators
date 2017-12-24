@@ -72,6 +72,9 @@ pub trait Chart {
     /// Get value of this `Chart` at `index`.
     fn get(&self, index: usize) -> Option<&DataPoint>;
 
+    /// Get number of data points in this chart.
+    fn len(&self) -> usize;
+
     fn push(&mut self, data_point: &DataPoint);
 
     fn open<'chart>(&'chart self) -> SourceSeries {

@@ -38,4 +38,8 @@ impl Chart for CandleStick {
     fn push(&mut self, data_point: &DataPoint) {
         self.candles.push(data_point.clone());
     }
+
+    fn len(&self) -> usize {
+        self.candles.len()
+    }
 }
