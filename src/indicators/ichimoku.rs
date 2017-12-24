@@ -17,7 +17,7 @@ pub struct Ichimoku<'chart> {
 }
 
 impl<'chart> Ichimoku<'chart> {
-    fn new(
+    pub fn new(
         chart: &'chart Chart,
 
         // params
@@ -38,7 +38,7 @@ impl<'chart> Ichimoku<'chart> {
     }
 
     /// Return Ichimoku chart with default settings.
-    fn default(chart: &'chart Chart) -> Self {
+    pub fn default(chart: &'chart Chart) -> Self {
         // reference:
         // http://www.ichimokutrader.com/elements.html
         // http://stockcharts.com/school/doku.php?id=chart_school:technical_indicators:ichimoku_cloud
@@ -56,7 +56,7 @@ impl<'chart> Ichimoku<'chart> {
 
     /// A moving average of the highest high and lowest low over the last
     /// `turning_line_period` data points.
-    fn turning_line(&self, index: usize) -> Option<f64> {
+    pub fn turning_line(&self, index: usize) -> Option<f64> {
         // aka Tenkan-sen, or conversion-line
 
         let lowest_val = match lowest(self.chart.low().offset(index), self.turning_line_period) {
@@ -82,7 +82,7 @@ impl<'chart> Ichimoku<'chart> {
 
     /// A moving average of the highest high and lowest low over the last
     /// `standard_line_period` data points.
-    fn standard_line(&self, index: usize) -> Option<f64> {
+    pub fn standard_line(&self, index: usize) -> Option<f64> {
         // aka Kijun-sen or base-line
 
         let lowest_val = match lowest(self.chart.low().offset(index), self.standard_line_period) {
@@ -108,7 +108,7 @@ impl<'chart> Ichimoku<'chart> {
     /// The average of the turning line (i.e Tenkan Sen) and
     /// standard line (i.e. Kijun Sen), plotted `lagging_span_displacement`
     /// data points ahead.
-    fn span_a(&self, index: i64) -> Option<f64> {
+    pub fn span_a(&self, index: i64) -> Option<f64> {
         // Senkou Span A (Leading Span A)
 
         // Span A plotted at `index` relies on data that is self.lagging_span_displacement
@@ -145,7 +145,7 @@ impl<'chart> Ichimoku<'chart> {
 
     /// The average of the highest high and lowest low over the last `span_b_period`
     /// data points, plotted `lagging_span_displacement` data points ahead.
-    fn span_b(&self, index: i64) -> Option<f64> {
+    pub fn span_b(&self, index: i64) -> Option<f64> {
         // Senkou Span B (Leading Span B)
 
         // Span B plotted at `index` relies on data that is self.lagging_span_displacement
@@ -187,7 +187,7 @@ impl<'chart> Ichimoku<'chart> {
     }
 
     /// The closing price plotted `lagging_span_displacement` data points behind.
-    fn lagging_line(&self, index: i64) -> Option<f64> {
+    pub fn lagging_line(&self, index: i64) -> Option<f64> {
         // The ladding line plotted at `index` relies on data that is self.lagging_span_displacement
         // data points ahead.
 
