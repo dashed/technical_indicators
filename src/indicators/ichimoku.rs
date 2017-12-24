@@ -37,6 +37,19 @@ impl<'chart> Ichimoku<'chart> {
         }
     }
 
+    /// Return Ichimoku chart with default settings.
+    fn default(chart: &'chart Chart) -> Self {
+        Ichimoku {
+            chart: chart,
+
+            // default params
+            turning_line_period: 9,
+            standard_line_period: 26,
+            span_b_period: 52,
+            lagging_span_displacement: 26,
+        }
+    }
+
     /// A moving average of the highest high and lowest low over the last
     /// `turning_line_period` data points.
     fn turning_line(&self, index: usize) -> Option<f64> {
