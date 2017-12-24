@@ -159,14 +159,20 @@ impl<'chart> Ichimoku<'chart> {
 
         let normalized_index = normalized_index as usize;
 
-        let lowest_val = match lowest(self.chart.low().offset(normalized_index), self.span_b_period) {
+        let lowest_val = match lowest(
+            self.chart.low().offset(normalized_index),
+            self.span_b_period,
+        ) {
             None => {
                 return None;
             }
             Some(lowest_val) => lowest_val,
         };
 
-        let highest_val = match highest(self.chart.high().offset(normalized_index), self.span_b_period) {
+        let highest_val = match highest(
+            self.chart.high().offset(normalized_index),
+            self.span_b_period,
+        ) {
             None => {
                 return None;
             }
@@ -180,9 +186,19 @@ impl<'chart> Ichimoku<'chart> {
         Some(result)
     }
 
-    fn lagging_line(&self, index: usize) -> Option<f64> {
-        // TODO: account for lagging_span_displacement
+    /// The closing price plotted `lagging_span_displacement` data points behind.
+    fn lagging_line(&self, index: i64) -> Option<f64> {
+        // The ladding line plotted at `index` relies on data that is self.lagging_span_displacement
+        // data points ahead.
 
-        self.chart.close().get(index)
+        let normalized_index = index - (self.lagging_span_displacement as i64);
+
+        if normalized_index < 0 {
+            return None;
+        }
+
+        let normalized_index = normalized_index as usize;
+
+        self.chart.close().get(normalized_index)
     }
 }
