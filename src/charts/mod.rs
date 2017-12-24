@@ -50,17 +50,19 @@ impl<'chart> SourceSeries<'chart> {
         }
     }
 
-    pub fn offset(&self, index: usize) -> Self {
+    /// Generate new `SourceSeries` by offsetting by `length` data points.
+    pub fn offset(&self, length: usize) -> Self {
         SourceSeries {
             chart: self.chart.clone(),
             series_type: self.series_type.clone(),
-            offset: index,
+            offset: length,
         }
     }
 
     /// Get the value of this `SourceSeries` at `index`.
+    /// If there is `self.offset`, it is added to `index`.
     pub fn get(&self, index: usize) -> Option<f64> {
-        match self.chart.get(index) {
+        match self.chart.get(index + self.offset) {
             None => None,
             Some(data_point) => Some(data_point.get(&self.series_type)),
         }
